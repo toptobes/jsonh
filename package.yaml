@@ -1,0 +1,33 @@
+name: jsonh
+version: 0.1.0.0
+synopsis: quick 'n' dirty JSON parser
+license: MIT
+author: toptobes
+extra-source-files:
+  - README.md
+  - LICENSE
+  - .gitignore
+  - jsonh
+
+executables:
+  jsonh:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+      - name: base
+        version: ">=4.16.4.0"
+        mixin:
+          - hiding (Prelude)
+      - name: relude
+        version: ">=1.2.0.0"
+        mixin:
+          - (Relude as Prelude)
+          - ""
+    ghc-options:
+      - -Wall
+      - -Wno-incomplete-patterns
+      - -O1
+    default-extensions:
+      - LambdaCase
+      - OverloadedStrings
+    language: GHC2021

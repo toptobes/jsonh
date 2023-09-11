@@ -1,0 +1,18 @@
+#!/bin/bash
+
+find_exec_path()
+{
+  EXEC_PATH=$(find ./dist-newstyle/ -type f -name "jsonh")
+}
+find_exec_path
+
+if [ ! -f "$EXEC_PATH" ]; then
+  cabal build -j && find_exec_path
+fi
+
+if [ -z "$EXEC_PATH" ]; then
+  echo "jsonh executable not found; perhaps there was trouble building?"
+  exit 1
+fi
+
+"$EXEC_PATH" "$@"
